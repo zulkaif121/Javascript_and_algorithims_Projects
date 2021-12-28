@@ -1,0 +1,53 @@
+function rot13(str) {
+let dict={
+  A:0,
+  B:1,
+  C:2,
+  D:3,
+  E:4,
+  F:5,
+  G:6,
+  H:7,
+  I:8,
+  J:9,
+  K:10,
+  L:11,
+  M:12,
+  N:13,
+  O:14,
+  P:15,
+  Q:16,
+  R:17,
+  S:18,
+  T:19,
+  U:20,
+  V:21,
+  W:22,
+  X:23,
+  Y:24,
+  Z:25,
+};
+let strcpy=str.split('');
+let strcpy2=[];
+function getKeyByValue(object,val){
+  return Object.keys(object).find(key=>object[key]===val)
+}
+for(let i=0;i<strcpy.length;i++){
+if(dict[strcpy[i].toString()]>=13){
+  strcpy2.push(getKeyByValue(dict,((dict[strcpy[i].toString()])-13)));
+}
+else if(dict[strcpy[i].toString()]<13){
+  let r=13-dict[strcpy[i].toString()];
+  
+   strcpy2.push(getKeyByValue(dict,26-r));
+
+}
+else{
+  strcpy2.push(strcpy[i]);
+}
+}
+
+  return strcpy2.join('');
+}
+
+console.log(rot13('GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.'));
